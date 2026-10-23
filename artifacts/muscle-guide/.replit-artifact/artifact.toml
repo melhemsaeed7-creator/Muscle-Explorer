@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "دليل عضلات الجسم"
+description = "دليل عربي تفاعلي من صفحة واحدة لاستكشاف عضلات الجسم واختيار التمرين والجهاز المناسبين مع تعليمات أداء واضحة."
+version = "1.0.0"
+id = "artifacts/muscle-guide"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22742
+
+[services.development]
+run = "pnpm --filter @workspace/muscle-guide run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/muscle-guide", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/muscle-guide/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22742"
+BASE_PATH = "/"
