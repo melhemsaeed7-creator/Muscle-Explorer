@@ -4,6 +4,7 @@
 dist
 tmp
 out-tsc
+/generated-artifacts/
 *.tsbuildinfo
 .expo
 .expo-shared
